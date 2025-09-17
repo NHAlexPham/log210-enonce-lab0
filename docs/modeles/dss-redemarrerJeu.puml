@@ -1,1 +1,15 @@
-// Vous devez compléter ce fichier
+@startuml DSS_redemarrerJeu
+skinparam style strictuml
+skinparam sequenceArrowThickness 2
+skinparam sequenceParticipantBackgroundColor #powderblue
+skinparam backgroundColor transparent
+skinparam defaultFontName Verdana
+
+title DSS pour le scénario Redémarrer
+
+actor Joueur
+participant Système
+
+Joueur -> Système : redémarrerJeu()
+
+@enduml

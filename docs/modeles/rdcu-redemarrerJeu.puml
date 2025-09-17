@@ -15,7 +15,8 @@ selon Contrôleur
 (JeuDeDes est l'objet racine)
 end note
 
-":JeuDeDes" -> "joueurs: Map<String, Joueur>" : clear()
+:JeuDeDes -> :JeuDeDes : redemarrerJeu()
+:JeuDeDes -> "joueurs: Map<String, Joueur>" : clear()
 
 note right of "joueurs: Map<String, Joueur>"
 selon Expert
