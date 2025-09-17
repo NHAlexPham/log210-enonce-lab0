@@ -1,1 +1,24 @@
-// Vous devez complétéer ce fichier
+@startuml RDCU_redemarrerJeu
+skinparam style strictuml
+skinparam sequenceArrowThickness 2
+skinparam sequenceParticipantBackgroundColor #powderblue
+skinparam backgroundColor transparent
+skinparam defaultFontName Verdana
+
+title RDCU pour redémarrerJeu
+
+participant ":JeuDeDes"
+participant "joueurs: Map<String, Joueur>"
+
+note right of ":JeuDeDes"
+selon Contrôleur  
+(JeuDeDes est l'objet racine)
+end note
+
+":JeuDeDes" -> "joueurs: Map<String, Joueur>" : clear()
+
+note right of "joueurs: Map<String, Joueur>"
+selon Expert
+end note
+
+@enduml
