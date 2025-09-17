@@ -44,7 +44,7 @@ class App {
     let user;
     // Si l'utilisateur est connecté, le gabarit Pug peut afficher des options, 
     // le nom de l'utilisateur et une option pour se déconnecter.
-    user = { nom: 'Pierre Trudeau', hasPrivileges: true, isAnonymous: false };
+    user = { nom: 'Nhat-Huy Alex Pham', hasPrivileges: true, isAnonymous: false };
     // Si user.isAnonymous est vrai, le gabarit Pug affiche une option pour se connecter.
     // user = { isAnonymous: true }; // utilisateur quand personne n'est connecté
 
