@@ -55,6 +55,11 @@ export class JeuDeDes {
         return JSON.stringify(resultat);
     }
 
+    public redemarrerJeu(): void {
+    this._joueurs.clear();
+    }
+    
+
     public terminerJeu(nom: string): string {
         if (!this._joueurs.get(nom)) {
             throw new NotFoundError(`Joueur '${nom}' n'existe pas.`);
@@ -67,6 +72,8 @@ export class JeuDeDes {
         // ne pas retourner l'objet de la couche domaine
         return JSON.stringify(resultat);
     }
+
+    
 
     // d'autres méthodes (des RDCU)
     brasser() {
