@@ -111,9 +111,9 @@ export class JeuRouter {
     this._controleurJeu.redemarrerJeu(); // opération système (RDCU)
     req.flash('info', 'L’application redémarre.');
     res.status(200).send({
-      message: 'Success',
-      status: res.status,
-      joueurs: JSON.parse(this._controleurJeu.joueurs)
+    message: 'Redémarrage du jeu effectué avec succès.',
+    status: res.status,
+    joueurs: JSON.parse(this._controleurJeu.joueurs)
     });
   } catch (error) {
     this._errorCode500(error, req, res);
