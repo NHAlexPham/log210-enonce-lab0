@@ -175,6 +175,74 @@ Voici la même figure, mais sous forme de diagramme de séquence avec l'acteur. 
 
 ![Diagramme de séquence système](http://www.plantuml.com/plantuml/proxy?cache=no&fmt=svg&src=https://raw.githubusercontent.com/profcfuhrmanets/log210-jeu-de-des-node-express-ts/master/docs/modeles/dss-jouer.puml)
 
+### Diagramme de classes logicielles
+
+Le diagramme ci-dessous représente les principales classes du système, leurs attributs, méthodes, et relations. Il a été généré avec PlantUML.
+
+```plantuml
+@startuml
+class De {
+    -_valeur: number
+    +brasser(): void
+    +valeur: number
+}
+abstract class default extends Error {
+    +{abstract} code: number
+}
+class InvalidParameterError extends AbstractError {
+    +code: 400
+}
+class Joueur {
+    -_nom: string
+    -_nbLancers: number
+    -_nbLancersGagnes: number
+    +nom: string
+    -assainirNom(nom: string): string
+    +lancers: number
+    +lancersGagnes: number
+    +lancer(): void
+    +gagner(): void
+    +toJSON(): { nom: string; lancers: number; lancersGagnes: number; }
+}
+class NotFoundError extends AbstractError {
+    +code: 404
+}
+class AlreadyExistsError extends AbstractError {
+    +code: 400
+}
+class JeuDeDes {
+    -_joueurs: Map<string, Joueur>
+    -_d1: De
+    -_d2: De
+    +demarrerJeu(nom: string): string
+    +jouer(nom: string): string
+    +redemarrerJeu(): void
+    +terminerJeu(nom: string): string
+    +brasser(): number
+    +joueurs: string
+}
+class JeuRouter {
+    -_router: Router
+    -_controleurJeu: JeuDeDes
+    +controleurJeu: JeuDeDes
+    +router: Router
+    +demarrerJeu(req: Request<ParamsDictionary, any, any, QueryString.ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction): void
+    +jouer(req: Request<ParamsDictionary, any, any, QueryString.ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction): void
+    -_errorCode500(error: any, req: Request<ParamsDictionary, any, any, QueryString.ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void
+    +terminerJeu(req: Request<ParamsDictionary, any, any, QueryString.ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction): void
+    +redemarrerJeu(req: Request<ParamsDictionary, any, any, QueryString.ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction): void
+    +init(): void
+}
+class App {
+    +expressApp: express.Application
+    -middleware(): void
+    -routes(): void
+}
+JeuDeDes --> "1" Joueur
+JeuDeDes --> "1" De
+JeuRouter --> "1" JeuDeDes
+@enduml
+
 ### Contrats d'opération et Réalisations de cas d'utilisation (RDCU)
 
 #### Opération: `démarrerJeu(nom:String)`
@@ -216,3 +284,4 @@ Voici la même figure, mais sous forme de diagramme de séquence avec l'acteur. 
 
 1. Le Joueur demande à redémarrer l'application.
 2. Le Système termine tous les jeux en cours et redémarre l'application.
+

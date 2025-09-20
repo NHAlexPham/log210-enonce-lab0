@@ -61,14 +61,22 @@ class App {
 
     // Route pour classement (stats)
     router.get('/stats', (req, res, next) => {
-      res.render('stats',
-        // passer objet au gabarit (template) Pug
-        {
-          title: `${titreBase}`,
-          user: user,
-          // créer nouveau tableau de joueurs qui est trié par ratio
-          joueurs: JSON.parse(jeuRoutes.controleurJeu.joueurs)
-        });
+    const joueurs: Array<any> = JSON.parse(jeuRoutes.controleurJeu.joueurs);
+
+    // Calculer le ratio pour chaque joueur
+    const joueursAvecRatio = joueurs.map(joueur => {
+    const ratio = joueur.lancers > 0 ? joueur.lancersGagnes / joueur.lancers : 0;
+    return { ...joueur, ratio };
+    });
+
+    // Trier les joueurs par ratio décroissant
+    joueursAvecRatio.sort((a, b) => b.ratio - a.ratio);
+
+    res.render('stats', {
+    title: `${titreBase}`,
+    user: user,
+    joueurs: joueursAvecRatio
+    });
     });
 
     // Route to login
