@@ -22,4 +22,10 @@ describe('GET /api/v1/jeu/redemarrerJeu', () => {
     expect(response.body.joueurs).toBeArray();
     expect(response.body.joueurs).toBeEmpty();
   });
+
+  it("devrait retourner 404 après redemarrerJeu", async () => {
+  await request(app).get("/api/v1/jeu/redemarrerJeu");
+  const response = await request(app).get("/api/v1/jeu/jouer/Jack");
+  expect(response.status).toBe(404);
+});
 });
