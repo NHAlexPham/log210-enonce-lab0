@@ -179,69 +179,8 @@ Voici la même figure, mais sous forme de diagramme de séquence avec l'acteur. 
 
 Le diagramme ci-dessous représente les principales classes du système, leurs attributs, méthodes, et relations. Il a été généré avec PlantUML.
 
-```plantuml
-@startuml
-class De {
-    -_valeur: number
-    +brasser(): void
-    +valeur: number
-}
-abstract class default extends Error {
-    +{abstract} code: number
-}
-class InvalidParameterError extends AbstractError {
-    +code: 400
-}
-class Joueur {
-    -_nom: string
-    -_nbLancers: number
-    -_nbLancersGagnes: number
-    +nom: string
-    -assainirNom(nom: string): string
-    +lancers: number
-    +lancersGagnes: number
-    +lancer(): void
-    +gagner(): void
-    +toJSON(): { nom: string; lancers: number; lancersGagnes: number; }
-}
-class NotFoundError extends AbstractError {
-    +code: 404
-}
-class AlreadyExistsError extends AbstractError {
-    +code: 400
-}
-class JeuDeDes {
-    -_joueurs: Map<string, Joueur>
-    -_d1: De
-    -_d2: De
-    +demarrerJeu(nom: string): string
-    +jouer(nom: string): string
-    +redemarrerJeu(): void
-    +terminerJeu(nom: string): string
-    +brasser(): number
-    +joueurs: string
-}
-class JeuRouter {
-    -_router: Router
-    -_controleurJeu: JeuDeDes
-    +controleurJeu: JeuDeDes
-    +router: Router
-    +demarrerJeu(req: Request<ParamsDictionary, any, any, QueryString.ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction): void
-    +jouer(req: Request<ParamsDictionary, any, any, QueryString.ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction): void
-    -_errorCode500(error: any, req: Request<ParamsDictionary, any, any, QueryString.ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void
-    +terminerJeu(req: Request<ParamsDictionary, any, any, QueryString.ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction): void
-    +redemarrerJeu(req: Request<ParamsDictionary, any, any, QueryString.ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction): void
-    +init(): void
-}
-class App {
-    +expressApp: express.Application
-    -middleware(): void
-    -routes(): void
-}
-JeuDeDes --> "1" Joueur
-JeuDeDes --> "1" De
-JeuRouter --> "1" JeuDeDes
-@enduml
+![Diagramme de séquence système](https://www.plantuml.com/plantuml/dpng/rLJ1RXen4Btp5LPEYO28LEbbYr2YRb8rQcdJV41arg_8rQvDndOAGlnxpNePxO92rLwQSbZXDs_UisVikN9UaWzLsIjAwPp88TOz4N_3nsTP8b0cJAXce1hipoYIGATdcNYsMYLmZxZfoPdp90ilagR2TnbABx3qCCg96o9BZKr_lIDlH64LMYef-QE9ybfzbIGhU52Tp5BNJN97CkbSZaOiScS30l79ZAqo4HErcU-GsITf2f1Z_ptyWvmRTAFz0vbe9RNHDBNLQIjurc7romCd1jdcCDGj-JpozZ5lxnw-JBVOMhJStuazGmROh84tNA-fzRSs6FK7nRxavEkI8DNgPgcTTt_NBeGSEHmtx4VTFvU9pt8nJiSQD4sTD1HraOaSkyKRNlGLAaa4Yg97ch9re2DnGbkdMtTGfStl3FZbT9lB9qlSTWc-sU11N0Egbvb8S0CMrdYo9SBMFUF29UsZmKEvRga8Jp68fm3dn_NhSxaklBP6qceWfDbzxWDezL3l_Zpo7DIz6yJCmfBYNaNcP38G1BSLTGjh7COHV8beiFIPcCRlRJ2rAvUSk_MgjpXy196bzrRXxMXqMY-oj9j_kUqNB-whRZVXlxcPscZFuu4ducAn6tPOBWZEHIGJpV_pk2Xr8RTQwUvKMgaIFoM1fMgyVhEk9S-3SZYSY9EBasOc7k8vUZnH6EI1S0MZGbN-0W00)
+
 
 ### Contrats d'opération et Réalisations de cas d'utilisation (RDCU)
 
